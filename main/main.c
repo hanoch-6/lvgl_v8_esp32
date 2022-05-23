@@ -11,12 +11,14 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
+#include "nvs_flash.h"
+
 #include "lv_examples/src/lv_demo_widgets/lv_demo_widgets.h"
 #include "lv_examples/src/lv_demo_music/lv_demo_music.h"
 #include "lv_examples/src/lv_demo_benchmark/lv_demo_benchmark.h"
 #include "lvgl_helpers.h"
 #include "esp_freertos_hooks.h"
-
+#include "wifi_scan.h"
 #include "test.h"
 /*
 bl     ---- 13
@@ -73,8 +75,28 @@ static void gui_task(void *arg)
          xSemaphoreGive(xGuiSemaphore);
       }
    }
+
 }
+
+static void readtimeTask(void *pvParameter)
+{
+    (void) pvParameter;
+    esp_err_t ret = nvs_flash_init();
+    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+        ESP_ERROR_CHECK(nvs_flash_erase());
+        ret = nvs_flash_init();
+    }
+    ESP_ERROR_CHECK( ret );
+    wifi_scan();
+    while(1)
+    {
+        vTaskDelay(pdMS_TO_TICKS(10));
+    }
+}
+
 void app_main(void)
 {
-   xTaskCreatePinnedToCore(gui_task, "gui task", 1024 * 4, NULL, 1, NULL, 0);
+
+   xTaskCreatePinnedToCore(gui_task, "gui task", 1024 * 4, NULL, 0, NULL, 0);
+   xTaskCreatePinnedToCore(readtimeTask,"start",4096*2,NULL,0,NULL,1);
 }

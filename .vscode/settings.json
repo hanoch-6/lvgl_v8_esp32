@@ -8,7 +8,8 @@
         "lv_example_get_started.h": "c",
         "lvgl.h": "c",
         "test.h": "c",
-        "lv_font.h": "c"
+        "lv_font.h": "c",
+        "wifi_scan.h": "c"
     },
     "idf.adapterTargetName": "esp32"
 }
