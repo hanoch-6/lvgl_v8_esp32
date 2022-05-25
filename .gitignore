@@ -57,4 +57,5 @@ dkms.conf
 # ESP-IDF build dir
 build
 
+# Vscode 
 .vscode
