@@ -210,14 +210,6 @@ LV_FONT_DECLARE(lv_font_montserrat_46)
 LV_FONT_DECLARE(lv_font_montserrat_48)
 #endif
 
-#if LV_MY_FONT_TWO
-LV_FONT_DECLARE(myFont_two)
-#endif
-
-#if LV_MY_FONT_ONE
-LV_FONT_DECLARE(myFont_one)
-#endif
-
 #if LV_FONT_MONTSERRAT_28_COMPRESSED
 LV_FONT_DECLARE(lv_font_montserrat_28_compressed)
 #endif
@@ -242,11 +234,9 @@ LV_FONT_DECLARE(lv_font_dejavu_16_persian_hebrew)
 LV_FONT_DECLARE(lv_font_simsun_16_cjk)
 #endif
 
-
-
-// #if LV_MY_FONT_TWO
-// LV_FONT_DECLARE(myFont_two)
-// #endif
+#if LV_FONT_MYFONT_TWO
+LV_FONT_DECLARE(myFont_two)
+#endif
 
 /*Declare the custom (user defined) fonts*/
 #ifdef LV_FONT_CUSTOM_DECLARE

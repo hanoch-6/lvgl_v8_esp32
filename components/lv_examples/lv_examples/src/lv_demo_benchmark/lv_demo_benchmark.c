@@ -86,7 +86,6 @@ static void arc_create(lv_style_t * style);
 static void fall_anim(lv_obj_t * obj);
 static void rnd_reset(void);
 static int32_t rnd_next(int32_t min, int32_t max);
-static void lv_example_style_8(void);
 
 static void rectangle_cb(void)
 {
@@ -629,11 +628,10 @@ void lv_demo_benchmark(void)
 {
     lv_disp_t * disp = lv_disp_get_next(NULL);
     disp->driver->monitor_cb = monitor_cb;
+
     lv_obj_t * scr = lv_scr_act();
     lv_obj_remove_style_all(scr);
     lv_obj_set_style_bg_opa(scr, LV_OPA_COVER, 0);
-    // lv_menu_create(scr);
-#if 0
 
     title = lv_label_create(scr);
     lv_obj_set_pos(title, LV_DPI_DEF / 30, LV_DPI_DEF / 30);
@@ -652,13 +650,12 @@ void lv_demo_benchmark(void)
 
     /*Manually start scenes*/
     scene_next_task_cb(NULL);
-    // lv_example_style_8();
-#endif
 }
+
 /**********************
  *   STATIC FUNCTIONS
-**********************/
-// 在每个刷新周期后调用，以告知渲染和刷新时间 + 刷新的像素数
+ **********************/
+
 static void monitor_cb(lv_disp_drv_t * drv, uint32_t time, uint32_t px)
 {
     LV_UNUSED(drv);
@@ -672,32 +669,6 @@ static void monitor_cb(lv_disp_drv_t * drv, uint32_t time, uint32_t px)
     }
 
 //    lv_obj_invalidate(lv_scr_act());
-}
-
-static void lv_example_style_8(void)
-{
-    static lv_style_t style;
-    lv_style_init(&style);
-
-    lv_style_set_radius(&style, 5);
-    lv_style_set_bg_opa(&style, LV_OPA_COVER);
-    lv_style_set_bg_color(&style, lv_palette_lighten(LV_PALETTE_GREY, 2));
-    lv_style_set_border_width(&style, 2);
-    lv_style_set_border_color(&style, lv_palette_main(LV_PALETTE_BLUE));
-    lv_style_set_pad_all(&style, 10);
-
-    lv_style_set_text_color(&style, lv_palette_main(LV_PALETTE_BLUE));
-    lv_style_set_text_letter_space(&style, 5);
-    lv_style_set_text_line_space(&style, 20);
-    lv_style_set_text_decor(&style, LV_TEXT_DECOR_UNDERLINE);
-
-    /*Create an object with the new style*/
-    lv_obj_t * obj = lv_label_create(lv_scr_act());
-    lv_obj_add_style(obj, &style, 0);
-    lv_label_set_text(obj, "Hanoch Thomas\n"
-                      "HuangMiaozhi");
-
-    lv_obj_center(obj);
 }
 
 static void scene_next_task_cb(lv_timer_t * timer)

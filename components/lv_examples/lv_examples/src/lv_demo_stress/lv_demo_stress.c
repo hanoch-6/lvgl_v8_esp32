@@ -8,7 +8,6 @@
  *********************/
 #include "../lv_demo.h"
 
-
 #if LV_USE_DEMO_STRESS
 /*********************
  *      DEFINES
@@ -28,6 +27,7 @@ static void set_y_anim(void * obj, int32_t v);
 static void set_width_anim(void * obj, int32_t v);
 static void arc_set_end_angle_anim(void * obj, int32_t v);
 static void obj_test_task_cb(lv_timer_t * tmr);
+
 /**********************
  *  STATIC VARIABLES
  **********************/
@@ -47,9 +47,11 @@ void lv_demo_stress(void)
 {
     lv_timer_create(obj_test_task_cb, TIME_STEP, NULL);
 }
+
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+
 static void obj_test_task_cb(lv_timer_t * tmr)
 {
     (void) tmr;    /*Unused*/
@@ -423,14 +425,14 @@ static void obj_test_task_cb(lv_timer_t * tmr)
 
 static void auto_del(lv_obj_t * obj, uint32_t delay)
 {
-    
     lv_anim_t a;
-    lv_anim_init(&a);//初始化动画变量
-    lv_anim_set_var(&a, obj);//将变量设置为动画
-    lv_anim_set_time(&a, 0);//设置动画持续时间
-    lv_anim_set_delay(&a, delay);//设置动画开始前的延时
-    lv_anim_set_ready_cb(&a, lv_obj_del_anim_ready_cb);//动画准备就绪时设置函数调用
+    lv_anim_init(&a);
+    lv_anim_set_var(&a, obj);
+    lv_anim_set_time(&a, 0);
+    lv_anim_set_delay(&a, delay);
+    lv_anim_set_ready_cb(&a, lv_obj_del_anim_ready_cb);
     lv_anim_start(&a);
+
 }
 
 static void msgbox_del(lv_timer_t * tmr)

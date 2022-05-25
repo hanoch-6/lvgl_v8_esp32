@@ -751,7 +751,7 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
 #  ifdef CONFIG_LV_FONT_MONTSERRAT_20
 #    define LV_FONT_MONTSERRAT_20 CONFIG_LV_FONT_MONTSERRAT_20
 #  else
-#    define  LV_FONT_MONTSERRAT_20    1
+#    define  LV_FONT_MONTSERRAT_20    0
 #  endif
 #endif
 #ifndef LV_FONT_MONTSERRAT_22
@@ -852,20 +852,11 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
 #    define  LV_FONT_MONTSERRAT_48    0
 #  endif
 #endif
-
-#ifndef LV_MY_FONT_ONE
-#  ifdef CONFIG_LV_MY_FONT_ONE
-#    define LV_MY_FONT_ONE CONFIG_LV_MY_FONT_ONE
+#ifndef LV_FONT_MYFONT_TWO
+#  ifdef CONFIG_LV_FONT_MYFONT_TWO
+#    define LV_FONT_MYFONT_TWO CONFIG_LV_FONT_MYFONT_TWO
 #  else
-#    define  LV_MY_FONT_ONE            1
-#  endif
-#endif
-
-#ifndef LV_MY_FONT_TWO
-#  ifdef CONFIG_LV_MY_FONT_TWO
-#    define LV_MY_FONT_TWO CONFIG_LV_MY_FONT_TWO
-#  else
-#    define  LV_MY_FONT_TWO            1
+#    define  LV_FONT_MYFONT_TWO        1
 #  endif
 #endif
 
@@ -898,6 +889,7 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
 #    define  LV_FONT_SIMSUN_16_CJK            0  /*1000 most common CJK radicals*/
 #  endif
 #endif
+
 /*Pixel perfect monospace fonts*/
 #ifndef LV_FONT_UNSCII_8
 #  ifdef CONFIG_LV_FONT_UNSCII_8
@@ -914,6 +906,7 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
 #  endif
 #endif
 
+
 /*Optionally declare custom fonts here.
  *You can use these fonts as default font too and they will be available globally.
  *E.g. #define LV_FONT_CUSTOM_DECLARE   LV_FONT_DECLARE(my_font_1) LV_FONT_DECLARE(my_font_2)*/
@@ -921,7 +914,7 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
 #  ifdef CONFIG_LV_FONT_CUSTOM_DECLARE
 #    define LV_FONT_CUSTOM_DECLARE CONFIG_LV_FONT_CUSTOM_DECLARE
 #  else
-#    define  LV_FONT_CUSTOM_DECLARE 
+#    define  LV_FONT_CUSTOM_DECLARE
 #  endif
 #endif
 
@@ -931,7 +924,7 @@ e.g. "stm32f769xx.h" or "stm32f429xx.h"*/
 #    define LV_FONT_DEFAULT CONFIG_LV_FONT_DEFAULT
 #  else
 #    define  LV_FONT_DEFAULT &myFont_two
-#endif
+#  endif
 #endif
 
 /*Enable handling large font and/or fonts with a lot of characters.

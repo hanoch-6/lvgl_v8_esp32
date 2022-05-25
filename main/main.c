@@ -12,22 +12,21 @@
 #include "freertos/task.h"
 #include "freertos/semphr.h"
 #include "nvs_flash.h"
-
 #include "lv_examples/src/lv_demo_widgets/lv_demo_widgets.h"
 #include "lv_examples/src/lv_demo_music/lv_demo_music.h"
 #include "lv_examples/src/lv_demo_benchmark/lv_demo_benchmark.h"
 #include "lvgl_helpers.h"
 #include "esp_freertos_hooks.h"
-#include "wifi_scan.h"
-#include "test.h"
+
+#include "wifi_fast_scan.h"
 /*
-bl     ---- 13
-sck    ---- 18
 sda    ---- 23
+sck    ---- 18
+cs     ---- 5
 ao/dc  ---- 4
 res    ---- 14
-cs     ---- 5
-驱动：ST7735S
+bl     ---- 13
+驱动：GC9A01
 */
 static void lv_tick_task(void *arg)
 {
@@ -59,10 +58,8 @@ static void gui_task(void *arg)
 
    esp_register_freertos_tick_hook(lv_tick_task);
    // lv_demo_widgets();
-   // lv_demo_music();
+   lv_demo_music();
    // lv_demo_benchmark();
-   // lv_demo_stress();
-   lv_example_btn_1();
    while (1)
    {
       /* Delay 1 tick (assumes FreeRTOS tick is 10ms */
@@ -75,28 +72,15 @@ static void gui_task(void *arg)
          xSemaphoreGive(xGuiSemaphore);
       }
    }
-
 }
-
-static void readtimeTask(void *pvParameter)
+void app_main(void)
 {
-    (void) pvParameter;
-    esp_err_t ret = nvs_flash_init();
+   esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
         ESP_ERROR_CHECK(nvs_flash_erase());
         ret = nvs_flash_init();
     }
-    ESP_ERROR_CHECK( ret );
-    wifi_scan();
-    while(1)
-    {
-        vTaskDelay(pdMS_TO_TICKS(10));
-    }
-}
-
-void app_main(void)
-{
-
-   xTaskCreatePinnedToCore(gui_task, "gui task", 1024 * 4, NULL, 0, NULL, 0);
-   xTaskCreatePinnedToCore(readtimeTask,"start",4096*2,NULL,0,NULL,1);
+   ESP_ERROR_CHECK( ret );
+   fast_scan();
+   xTaskCreatePinnedToCore(gui_task, "gui task", 1024 * 4, NULL, 1, NULL, 0);
 }
