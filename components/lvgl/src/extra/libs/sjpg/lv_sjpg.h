@@ -1,10 +1,10 @@
 /**
- * @file lv_extra.h
+ * @file lv_sjpg.h
  *
  */
 
-#ifndef LV_EXTRA_H
-#define LV_EXTRA_H
+#ifndef LV_SJPEG_H
+#define LV_SJPEG_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -14,11 +14,7 @@ extern "C" {
  *      INCLUDES
  *********************/
 
-#include "layouts/lv_layouts.h"
-#include "libs/lv_libs.h"
-// #include "others/lv_others.h"
-#include "themes/lv_themes.h"
-#include "widgets/lv_widgets.h"
+#if LV_USE_SJPG
 
 /*********************
  *      DEFINES
@@ -32,17 +28,16 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-/**
- * Initialize the extra components
- */
-void lv_extra_init(void);
+void lv_split_jpeg_init(void);
 
 /**********************
  *      MACROS
  **********************/
 
+#endif /*LV_USE_SJPG*/
+
 #ifdef __cplusplus
-} /*extern "C"*/
+}
 #endif
 
-#endif /*LV_EXTRA_H*/
+#endif /* LV_SJPEG_H */

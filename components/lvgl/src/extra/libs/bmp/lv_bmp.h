@@ -1,10 +1,10 @@
 /**
- * @file lv_extra.h
+ * @file lv_bmp.h
  *
  */
 
-#ifndef LV_EXTRA_H
-#define LV_EXTRA_H
+#ifndef LV_BMP_H
+#define LV_BMP_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,12 +13,8 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-
-#include "layouts/lv_layouts.h"
-#include "libs/lv_libs.h"
-// #include "others/lv_others.h"
-#include "themes/lv_themes.h"
-#include "widgets/lv_widgets.h"
+#include "../../../lv_conf_internal.h"
+#if LV_USE_BMP
 
 /*********************
  *      DEFINES
@@ -31,18 +27,16 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-
-/**
- * Initialize the extra components
- */
-void lv_extra_init(void);
+void lv_bmp_init(void);
 
 /**********************
  *      MACROS
  **********************/
 
+#endif /*LV_USE_BMP*/
+
 #ifdef __cplusplus
-} /*extern "C"*/
+} /* extern "C" */
 #endif
 
-#endif /*LV_EXTRA_H*/
+#endif /*LV_BMP_H*/

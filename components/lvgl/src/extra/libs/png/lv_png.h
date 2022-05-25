@@ -1,10 +1,10 @@
 /**
- * @file lv_extra.h
+ * @file lv_png.h
  *
  */
 
-#ifndef LV_EXTRA_H
-#define LV_EXTRA_H
+#ifndef LV_PNG_H
+#define LV_PNG_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,12 +13,8 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-
-#include "layouts/lv_layouts.h"
-#include "libs/lv_libs.h"
-// #include "others/lv_others.h"
-#include "themes/lv_themes.h"
-#include "widgets/lv_widgets.h"
+#include "../../../lv_conf_internal.h"
+#if LV_USE_PNG
 
 /*********************
  *      DEFINES
@@ -33,16 +29,18 @@ extern "C" {
  **********************/
 
 /**
- * Initialize the extra components
+ * Register the PNG decoder functions in LVGL
  */
-void lv_extra_init(void);
+void lv_png_init(void);
 
 /**********************
  *      MACROS
  **********************/
 
+#endif /*LV_USE_PNG*/
+
 #ifdef __cplusplus
-} /*extern "C"*/
+} /* extern "C" */
 #endif
 
-#endif /*LV_EXTRA_H*/
+#endif /*LV_PNG_H*/

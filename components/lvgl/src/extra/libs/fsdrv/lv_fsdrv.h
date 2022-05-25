@@ -1,10 +1,10 @@
 /**
- * @file lv_extra.h
+ * @file lv_fsdrv.h
  *
  */
 
-#ifndef LV_EXTRA_H
-#define LV_EXTRA_H
+#ifndef LV_FSDRV_H
+#define LV_FSDRV_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,12 +13,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-
-#include "layouts/lv_layouts.h"
-#include "libs/lv_libs.h"
-// #include "others/lv_others.h"
-#include "themes/lv_themes.h"
-#include "widgets/lv_widgets.h"
+#include "../../../lv_conf_internal.h"
 
 /*********************
  *      DEFINES
@@ -32,17 +27,29 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-/**
- * Initialize the extra components
- */
-void lv_extra_init(void);
+#if LV_USE_FS_FATFS != '\0'
+void lv_fs_fatfs_init(void);
+#endif
+
+#if LV_USE_FS_STDIO != '\0'
+void lv_fs_stdio_init(void);
+#endif
+
+#if LV_USE_FS_POSIX != '\0'
+void lv_fs_posix_init(void);
+#endif
+
+#if LV_USE_FS_WIN32 != '\0'
+void lv_fs_win32_init(void);
+#endif
 
 /**********************
  *      MACROS
  **********************/
 
 #ifdef __cplusplus
-} /*extern "C"*/
+} /* extern "C" */
 #endif
 
-#endif /*LV_EXTRA_H*/
+#endif /*LV_FSDRV_H*/
+

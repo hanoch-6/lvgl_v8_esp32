@@ -1,10 +1,10 @@
 /**
- * @file lv_extra.h
+ * @file lv_libs.h
  *
  */
 
-#ifndef LV_EXTRA_H
-#define LV_EXTRA_H
+#ifndef LV_LIBS_H
+#define LV_LIBS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -13,12 +13,15 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-
-#include "layouts/lv_layouts.h"
-#include "libs/lv_libs.h"
-// #include "others/lv_others.h"
-#include "themes/lv_themes.h"
-#include "widgets/lv_widgets.h"
+#include "bmp/lv_bmp.h"
+#include "fsdrv/lv_fsdrv.h"
+#include "png/lv_png.h"
+#include "gif/lv_gif.h"
+#include "qrcode/lv_qrcode.h"
+#include "sjpg/lv_sjpg.h"
+#include "freetype/lv_freetype.h"
+#include "rlottie/lv_rlottie.h"
+#include "ffmpeg/lv_ffmpeg.h"
 
 /*********************
  *      DEFINES
@@ -32,11 +35,6 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-/**
- * Initialize the extra components
- */
-void lv_extra_init(void);
-
 /**********************
  *      MACROS
  **********************/
@@ -45,4 +43,4 @@ void lv_extra_init(void);
 } /*extern "C"*/
 #endif
 
-#endif /*LV_EXTRA_H*/
+#endif /*LV_LIBS_H*/
